@@ -1,0 +1,122 @@
+# CAS Config
+security:
+  cas:
+    casServerName: https://auth.biodiversitydata.se
+    casServerUrlPrefix: ${security.cas.casServerName}/cas
+    loginUrl: ${security.cas.casServerUrlPrefix}/login
+    logoutUrl: ${security.cas.casServerUrlPrefix}/logout
+    appServerName: https://auth.biodiversitydata.se
+    authCookieName: ALA-Auth
+  user:
+    name: admin
+    password: $SECURITY_USER_PASSWORD
+    role:
+      - ACTUATOR
+  basic:
+    enabled: true
+    authorizeMode: role
+    realm: ALA CAS
+    path:
+      - /status/**
+endpoints:
+  enabled: true
+management:
+  security:
+    enabled: true
+    roles: ACTUATOR
+
+serverURL: https://auth.biodiversitydata.se
+serverName: https://auth.biodiversitydata.se
+grails:
+  serverURL: https://auth.biodiversitydata.se/userdetails
+  mail:
+    host: mail.infrabas.se
+    port: 587
+    username: admin@mail.infrabas.se
+    password: $ADMIN_EMAIL_PASSORD
+    props:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+          port: 587
+
+server:
+  port: 8080
+  contextPath: /userdetails
+redirectAfterFirstLogin: ${grails.serverURL}/myprofile
+
+# Data source configuration
+dataSource:
+  dbCreate: "none"
+  url: jdbc:mysql://mysqldbcas:3306/emmet?serverTimezone=Europe/Paris&zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8&useSSL=true
+  username: cas
+  password: $CAS_DB_PASSWORD
+
+oauth:
+  providers:
+#    flickr:
+#      enabled: true
+#      key: somekey
+#      secret: somesecret
+#      callback: ${grails.serverURL}/profile/flickrCallback
+password:
+  encoder: legacy
+bcrypt:
+  strength: 10
+encoding:
+  algorithm: MD5
+  salt: $USER_STORE_DB_ENCODING_SALT
+
+recaptcha:
+  baseUrl: https://www.google.com/recaptcha/api/
+  siteKey:
+  secretKey:
+
+ala:
+  baseURL: https://biodiversitydata.se
+
+supportEmail: admin@mail.infrabas.se
+homeUrl: https://biodiversitydata.se
+mainTitle: Swedish Biodiversity Data Infrastructure
+emailSenderTitle: Swedish Biodiversity Data Infrastructure
+emailSender: admin@mail.infrabas.se
+
+sightings.url: /mine
+spatial.url: https://spatial.biodiversitydata.se?tool=log
+volunteer.url: /user/myStats
+lists.url: https://lists.biodiversitydata.se/speciesList/list
+biocache.search.baseUrl: https://records.biodiversitydata.se/occurrences/search
+biocache.search.url: https://records.biodiversitydata.se/occurrences/search/?q=*%3A*&fq=assertion_user_id%3A
+biocache.myDownloads.url: https://records.biodiversitydata.se/download/myDownloads/
+alerts.url:
+
+# this property is read/used by ala-auth-plugin (included by userdetails)
+userDetails:
+  url: https://auth.biodiversitydata.se/userdetails/
+
+# Header and footer
+headerAndFooter:
+  baseURL: https://static.bioatlas.se/bs3
+  version: 1
+ala.baseURL: https://biodiversitydata.se
+bie.baseURL: https://species.biodiversitydata.se
+bie.searchPath: /search
+
+# Skin options
+skin.layout: main
+skin.fluidLayout: false
+skin.orgNameLong: Swedish Biodiversity Data Infrastructure
+skin.orgNameShort: Swedish Biodiversity Data Infrastructure
+skin.favicon: https://wp.biodiversitydata.se/wp-content/uploads/2021/02/cropped-favicon-180x180.png
+skin.homeUrl: https://biodiversitydata.se
+
+# API key for external apps
+webservice.apiKey: to_be_added
+
+# Default primary fields for Export to CSV functionality
+admin.export.csv.primary.fields: id,userName,firstName,lastName,email,activated,locked,created
+
+spring:
+  session:
+    store-type: none
