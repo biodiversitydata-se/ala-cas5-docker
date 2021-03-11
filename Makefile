@@ -46,15 +46,19 @@ stop:
 build:
 	@echo "Building images..."
 	@docker build --no-cache -t bioatlas/ala-cas -t bioatlas/ala-cas:v5.3 cas5
-	@docker build --no-cache -t bioatlas/bioatlas/ala-cas-management -t bioatlas/ala-cas-management:v5.3 cas-management
+	@docker build --no-cache -t bioatlas/ala-cas-management -t bioatlas/ala-cas-management:v5.3 cas-management
 	@docker build --no-cache -t bioatlas/ala-userdetails -t bioatlas/ala-userdetails:v2.3 userdetails
 	@docker build --no-cache -t bioatlas/ala-apikey -t bioatlas/ala-apikey:v1.5 apikey
 
 push:
 	@echo "Pushing images to Dockerhub..."
 	@docker push bioatlas/ala-cas:v5.3
-	@docker push bioatlas/ala-cas-managementv5.3
+	@docker push bioatlas/ala-cas-management:v5.3
 	@docker push bioatlas/ala-userdetails:v2.3
 	@docker push bioatlas/ala-apikey:v1.5
+	@docker push bioatlas/ala-cas:latest
+	@docker push bioatlas/ala-cas-management:latest
+	@docker push bioatlas/ala-userdetails:latest
+	@docker push bioatlas/ala-apikey:latest
 
 release: build push
