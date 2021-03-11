@@ -1,0 +1,108 @@
+version: '3.7'
+
+networks:
+  default:
+    external:
+      name: sbdinet
+
+volumes:
+  db_data_mysqldbapikey:
+  db_data_mysqldbcas:
+  db_data_mongodbcas:
+
+services:
+
+  mysqldbapikey:
+    image: mysql:5.7
+    environment:
+      - LANG=C.UTF-8
+    container_name: mysqldbapikey
+    env_file: ./env/.envapikey
+    volumes:
+      - ./apikey/db:/docker-entrypoint-initdb.d
+      - db_data_mysqldbapikey:/var/lib/mysql
+
+  apikey:
+    image: bioatlas/ala-apikey:v1.5
+    container_name: apikey
+    environment:
+      - JAVA_OPTS=-Xmx2g -Xms128m -Xss256k
+    env_file: ./env/.envapikey
+    volumes:
+      - ./config/apikey-config.yml:/tmp/apikey-config.yml
+
+  mysqldbcas:
+    image: mysql:5.7
+    environment:
+      - LANG=C.UTF-8
+    env_file: ./env/.envcas
+    container_name: mysqldbcas
+    volumes:
+      - ./cas5/db:/docker-entrypoint-initdb.d
+      - db_data_mysqldbcas:/var/lib/mysql
+
+  userdetails:
+    image: bioatlas/ala-userdetails:v2.3
+    container_name: userdetails
+    environment:
+      - JAVA_OPTS=-Xmx2g -Xms128m -Xss256k
+    env_file: ./env/.envcas
+    volumes:
+      - ./config/userdetails-config.yml:/tmp/userdetails-config.yml
+
+  mongodbcas:
+    image: mongo:3.4.6
+    container_name: mongodbcas
+    env_file: ./env/.envcas
+    volumes:
+      - ./mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:z
+      - db_data_mongodbcas:/data/db
+
+  casserver:
+    image: bioatlas/ala-cas:v5.3
+    container_name: casserver
+    environment:
+      - JAVA_OPTS=-Xmx2g -Xms128m -Xss256k
+    env_file: ./env/.envcas
+    volumes:
+      - ./config/cas5-config.yml:/tmp/application.yml
+      - ./config/pwe.properties:/tmp/pwe.properties
+
+  casmanage:
+    image: bioatlas/ala-cas-management:v5.3
+    container_name: casmanage
+    environment:
+      - JAVA_OPTS=-Xmx2g -Xms128m -Xss256k
+    env_file: ./env/.envcas
+    volumes:
+      - ./config/cas-management-config.properties:/tmp/application.properties
+
+#  proxy:
+#    image: jwilder/nginx-proxy
+#    container_name: proxy
+#    init: true
+#    ports:
+#      - 80:80
+#      - 443:443
+#    volumes:
+#      - /var/run/docker.sock:/tmp/docker.sock
+#      - ./webserver/nginx-proxy.conf:/etc/nginx/proxy.conf
+#      - ./webserver/ala-cors.conf:/etc/nginx/ala_cors
+#      - ./webserver/conf.d/bas-auth.conf:/etc/nginx/conf.d/bas-auth.conf
+#      - ./webserver/conf.d/sbdi-auth.conf:/etc/nginx/conf.d/sbdi-auth.conf
+#      - ./nginx-proxy-certs:/etc/nginx/certs:ro
+
+#  dnsmasq:
+#    image: andyshinn/dnsmasq:2.78
+#    container_name: dnsmasq
+#    command: --log-facility=- --server=127.0.0.11 --neg-ttl=3600 --cache-size=1000 --max-cache-ttl=3600 --min-cache-ttl=3600
+#    cap_add:
+#      - NET_ADMIN
+#    ports:
+#      - 172.17.0.1:53:53/tcp
+#      - 172.17.0.1:53:53/udp
+#    external_links:
+#      - proxy:auth.bioatlas.se
+#      - proxy:auth.biodiversitydata.se
+#    depends_on:
+#      - proxy
