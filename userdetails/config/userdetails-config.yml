@@ -1,0 +1,122 @@
+# CAS Config
+security:
+  cas:
+    casServerName: https://auth.bioatlas.se
+    casServerUrlPrefix: ${security.cas.casServerName}/cas
+    loginUrl: ${security.cas.casServerUrlPrefix}/login
+    logoutUrl: ${security.cas.casServerUrlPrefix}/logout
+    appServerName: https://auth.bioatlas.se
+    authCookieName: ALA-Auth
+  user:
+    name: admin
+    password: $SECURITY_USER_PASSWORD
+    role:
+      - ACTUATOR
+  basic:
+    enabled: true
+    authorizeMode: role
+    realm: ALA CAS
+    path:
+      - /status/**
+endpoints:
+  enabled: true
+management:
+  security:
+    enabled: true
+    roles: ACTUATOR
+
+serverURL: https://auth.bioatlas.se
+serverName: https://auth.bioatlas.se
+grails:
+  serverURL: https://auth.bioatlas.se/userdetails
+  mail:
+    host: mail.infrabas.se
+    port: 587
+    username: admin@mail.infrabas.se
+    password: $ADMIN_EMAIL_PASSORD
+    props:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+          port: 587
+
+server:
+  port: 8080
+  contextPath: /userdetails
+redirectAfterFirstLogin: ${grails.serverURL}/myprofile
+
+# Data source configuration
+dataSource:
+  dbCreate: "none"
+  url: jdbc:mysql://mysqldbcas:3306/emmet?serverTimezone=Europe/Paris&zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8&useSSL=true
+  username: cas
+  password: $CAS_DB_PASSWORD
+
+oauth:
+  providers:
+#    flickr:
+#      enabled: true
+#      key: somekey
+#      secret: somesecret
+#      callback: ${grails.serverURL}/profile/flickrCallback
+password:
+  encoder: legacy
+bcrypt:
+  strength: 10
+encoding:
+  algorithm: MD5
+  salt: $USER_STORE_DB_ENCODING_SALT
+
+recaptcha:
+  baseUrl: https://www.google.com/recaptcha/api/
+  siteKey:
+  secretKey:
+
+ala:
+  baseURL: https://bioatlas.se
+
+supportEmail: admin@mail.infrabas.se
+homeUrl: https://bioatlas.se
+mainTitle: Bioatlas Sweden
+emailSenderTitle: Bioatlas Sweden
+emailSender: admin@mail.infrabas.se
+
+sightings.url: /mine
+spatial.url: https://spatial.bioatlas.se?tool=log
+volunteer.url: /user/myStats
+lists.url: https://lists.bioatlas.se/speciesList/list
+biocache.search.baseUrl: https://records.bioatlas.se/occurrences/search
+biocache.search.url: https://records.bioatlas.se/occurrences/search/?q=*%3A*&fq=assertion_user_id%3A
+biocache.myDownloads.url: https://records.bioatlas.se/download/myDownloads/
+alerts.url:
+
+# this property is read/used by ala-auth-plugin (included by userdetails)
+userDetails:
+  url: https://auth.bioatlas.se/userdetails/
+
+# Header and footer
+headerAndFooter:
+  baseURL: https://static.bioatlas.se/bs3
+  version: 1
+ala.baseURL: https://bioatlas.se
+bie.baseURL: https://species.bioatlas.se
+bie.searchPath: /search
+
+# Skin options
+skin.layout: main
+skin.fluidLayout: false
+skin.orgNameLong: Bioatlas Sweden
+skin.orgNameShort: Bioatlas Sweden
+skin.favicon: https://bioatlas.se/wp-content/themes/atlas/img/favicon/favicon.ico
+skin.homeUrl: https://bioatlas.se
+
+# API key for external apps
+webservice.apiKey: to_be_added
+
+# Default primary fields for Export to CSV functionality
+admin.export.csv.primary.fields: id,userName,firstName,lastName,email,activated,locked,created
+
+spring:
+  session:
+    store-type: none
