@@ -1,0 +1,82 @@
+# CAS Config
+security:
+  cas:
+    casServerName: https://auth.bioatlas.se
+    casServerUrlPrefix: ${security.cas.casServerName}/cas
+    loginUrl: ${security.cas.casServerUrlPrefix}/login
+    logoutUrl: ${security.cas.casServerUrlPrefix}/logout
+    appServerName: https://auth.bioatlas.se
+    authCookieName: ALA-Auth
+  user:
+    name: admin
+    password: secret
+    role:
+      - ACTUATOR
+  basic:
+    enabled: true
+    authorizeMode: role
+    realm: ALA CAS
+    path:
+      - /status/**
+endpoints:
+  enabled: true
+management:
+  security:
+    enabled: true
+    roles: ACTUATOR
+
+serverURL: https://auth.bioatlas.se
+serverName: https://auth.bioatlas.se
+grails:
+  serverURL: https://auth.bioatlas.se/apikey
+server:
+  port: 8080
+  contextPath: /apikey
+
+# Data source configuration
+dataSource:
+  dbCreate: "none"
+  url: jdbc:mysql://mysqldbapikey:3306/$APIKEY_DB_NAME?serverTimezone=Europe/Paris&zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8&useSSL=true
+  username: $APIKEY_DB_USERNAME
+  password: $APIKEY_DB_PASSWORD
+flyway:
+  baselineOnMigrate: true
+
+ala:
+  baseURL: https://www.ala.org.au
+
+supportEmail: support@bioatlas.se
+homeUrl: https://www.ala.org.au
+mainTitle: Bioatlas Sweden
+emailSenderTitle: Bioatlas Sweden
+emailSender: support@bioatlas.se
+
+sightings.url: /mine
+spatial.url: https://spatial.bioatlas.se?tool=log
+volunteer.url: /user/myStats
+lists.url: https://lists.bioatlas.se/speciesList/list
+biocache.search.url: https://records.bioatlas.se/occurrences/search
+alerts.url:
+
+# this property is read/used by ala-auth-plugin (included by apikey)
+userDetails:
+  url: https://auth.bioatlas.se/userdetails/
+
+# Header and footer
+headerAndFooter:
+  baseURL: https://static.bioatlas.se/bs3
+  version: 1
+ala.baseURL: https://bioatlas.se
+bie.baseURL: https://species.bioatlas.se
+bie.searchPath: /search
+
+# Skin options
+#skin.layout: main
+#skin.fluidLayout: true
+skin.orgNameLong: Bioatlas Sweden
+skin.orgNameShort: Bioatlas Sweden
+skin.favicon: https://bioatlas.se/wp-content/themes/atlas/img/favicon/favicon.ico
+
+spring:
+  session:
+    store-type: none
