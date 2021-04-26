@@ -55,11 +55,14 @@ dataSource:
 
 oauth:
   providers:
-#    flickr:
-#      enabled: true
+    flickr:
+      enabled: false
 #      key: somekey
 #      secret: somesecret
 #      callback: ${grails.serverURL}/profile/flickrCallback
+    inaturalist:
+      enabled: false
+
 password:
   encoder: legacy
 bcrypt:
@@ -107,8 +110,8 @@ bie.searchPath: /search
 skin.layout: main
 skin.fluidLayout: false
 skin.orgNameLong: Swedish Biodiversity Data Infrastructure
-skin.orgNameShort: Swedish Biodiversity Data Infrastructure
-skin.favicon: https://wp.biodiversitydata.se/wp-content/uploads/2021/02/cropped-favicon-180x180.png
+skin.orgNameShort: SBDI
+skin.favicon: https://biodiversitydata.se/wp-content/uploads/2021/02/cropped-favicon-180x180.png
 skin.homeUrl: https://biodiversitydata.se
 
 # API key for external apps
@@ -120,3 +123,6 @@ admin.export.csv.primary.fields: id,userName,firstName,lastName,email,activated,
 spring:
   session:
     store-type: none
+
+privacyPolicy: https://docs.biodiversitydata.se/sbdi-data/sbdi-atlas-terms-of-use/privacy-policy-2/
+termsOfUse : https://docs.biodiversitydata.se/sbdi-data/sbdi-atlas-terms-of-use/
