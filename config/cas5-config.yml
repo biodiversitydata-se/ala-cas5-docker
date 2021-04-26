@@ -146,6 +146,7 @@ ala:
     name: ALA-Auth
     path: /
   userCreator:
+    defaultCountry: SE
     userCreatePassword: $USER_CREATE_PASSWORD
     jdbc:
       dataSourceName: java:comp/env/jdbccas
@@ -154,10 +155,11 @@ ala:
       enableUpdateLegacyPasswords: true
   skin:
     baseUrl: https://biodiversitydata.se
-    termsUrl: ${ala.skin.baseUrl}/terms-of-use/
+    termsUrl: https://docs.biodiversitydata.se/sbdi-data/sbdi-atlas-terms-of-use/
     uiVersion: 2
     headerFooterUrl: https://static.bioatlas.se/bs3/
-    favIconBaseUrl: https://wp.biodiversitydata.se/wp-content/uploads/2021/02/
+    favIconBaseUrl: https://biodiversitydata.se/wp-content/uploads/2021/02/
+    loginLogo: https://biodiversitydata.se/wp-content/uploads/2021/02/sbdi-logo-orginal-large.png
     bieBaseUrl: https://species.biodiversitydata.se
     bieSearchPath: /search
     userDetailsUrl: https://auth.biodiversitydata.se/userdetails/
@@ -189,3 +191,4 @@ management:
 spring:
   session:
     store-type: none
+
