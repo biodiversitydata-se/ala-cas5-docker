@@ -42,7 +42,7 @@ services:
       - db_data_mysqldbcas:/var/lib/mysql
 
   userdetails:
-    image: bioatlas/ala-userdetails:v2.3
+    image: bioatlas/ala-userdetails:v2.4
     container_name: userdetails
     environment:
       - JAVA_OPTS=-Xmx2g -Xms128m -Xss256k
@@ -59,7 +59,7 @@ services:
       - db_data_mongodbcas:/data/db
 
   casserver:
-    image: bioatlas/ala-cas:v5.3
+    image: bioatlas/ala-cas:v5.3.12-2
     container_name: casserver
     environment:
       - JAVA_OPTS=-Xmx2g -Xms128m -Xss256k
