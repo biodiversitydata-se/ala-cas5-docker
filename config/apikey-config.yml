@@ -45,11 +45,11 @@ flyway:
 ala:
   baseURL: https://www.ala.org.au
 
-supportEmail: admin@mail.infrabas.se
-homeUrl: https://biodiversitydata.se
+supportEmail: support@biodiversitydata.se
+homeUrl: https://tools.biodiversitydata.se
 mainTitle: Swedish Biodiversity Data Infrastructure
 emailSenderTitle: Swedish Biodiversity Data Infrastructure
-emailSender: admin@mail.infrabas.se
+emailSender: admin@biodiversitydata.se
 
 sightings.url: /mine
 spatial.url: https://spatial.biodiversitydata.se?tool=log
@@ -64,18 +64,18 @@ userDetails:
 
 # Header and footer
 headerAndFooter:
-  baseURL: https://static.bioatlas.se/bs3
-  version: 1
+  baseURL: https://static.biodiversitydata.se
+  version: 2
 ala.baseURL: https://biodiversitydata.se
 bie.baseURL: https://species.biodiversitydata.se
 bie.searchPath: /search
 
 # Skin options
-#skin.layout: main
+skin.layout: generic
 #skin.fluidLayout: true
 skin.orgNameLong: Swedish Biodiversity Data Infrastructure
 skin.orgNameShort: SBDI
-skin.favicon: https://wp.biodiversitydata.se/wp-content/uploads/2021/02/cropped-favicon-180x180.png
+skin.favicon: https://static.biodiversitydata.se/favicon.ico
 
 spring:
   session:

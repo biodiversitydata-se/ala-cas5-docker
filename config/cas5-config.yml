@@ -154,11 +154,11 @@ ala:
       enableRequestExtraAttributes: true
       enableUpdateLegacyPasswords: true
   skin:
-    baseUrl: https://biodiversitydata.se
+    baseUrl: https://tools.biodiversitydata.se
     termsUrl: https://docs.biodiversitydata.se/sbdi-data/sbdi-atlas-terms-of-use/
     uiVersion: 2
-    headerFooterUrl: https://static.bioatlas.se/bs3/
-    favIconBaseUrl: https://biodiversitydata.se/wp-content/uploads/2021/02/
+    headerFooterUrl: https://static.biodiversitydata.se/
+    favIconBaseUrl: https://static.biodiversitydata.se/
     loginLogo: https://biodiversitydata.se/wp-content/uploads/2021/02/sbdi-logo-orginal-large.png
     bieBaseUrl: https://species.biodiversitydata.se
     bieSearchPath: /search

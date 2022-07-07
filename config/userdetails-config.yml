@@ -30,9 +30,9 @@ serverName: https://auth.biodiversitydata.se
 grails:
   serverURL: https://auth.biodiversitydata.se/userdetails
   mail:
-    host: mail.infrabas.se
+    host: mail.biodiversitydata.se
     port: 587
-    username: admin@mail.infrabas.se
+    username: admin@biodiversitydata.se
     password: $ADMIN_EMAIL_PASSORD
     props:
       mail:
@@ -79,11 +79,11 @@ recaptcha:
 ala:
   baseURL: https://biodiversitydata.se
 
-supportEmail: admin@mail.infrabas.se
-homeUrl: https://biodiversitydata.se
+supportEmail: support@biodiversitydata.se
+homeUrl: https://tools.biodiversitydata.se
 mainTitle: Swedish Biodiversity Data Infrastructure
 emailSenderTitle: Swedish Biodiversity Data Infrastructure
-emailSender: admin@mail.infrabas.se
+emailSender: admin@biodiversitydata.se
 
 sightings.url: /mine
 spatial.url: https://spatial.biodiversitydata.se?tool=log
@@ -91,7 +91,7 @@ volunteer.url: /user/myStats
 lists.url: https://lists.biodiversitydata.se/speciesList/list
 biocache.search.baseUrl: https://records.biodiversitydata.se/occurrences/search
 biocache.search.url: https://records.biodiversitydata.se/occurrences/search/?q=*%3A*&fq=assertion_user_id%3A
-biocache.myDownloads.url: https://records.biodiversitydata.se/download/myDownloads/
+biocache.myDownloads.url:
 alerts.url:
 
 # this property is read/used by ala-auth-plugin (included by userdetails)
@@ -100,22 +100,22 @@ userDetails:
 
 # Header and footer
 headerAndFooter:
-  baseURL: https://static.bioatlas.se/bs3
-  version: 1
+  baseURL: https://static.biodiversitydata.se
+  version: 2
 ala.baseURL: https://biodiversitydata.se
 bie.baseURL: https://species.biodiversitydata.se
 bie.searchPath: /search
 
 # Skin options
-skin.layout: main
+skin.layout: ala-main
 skin.fluidLayout: false
 skin.orgNameLong: Swedish Biodiversity Data Infrastructure
 skin.orgNameShort: SBDI
-skin.favicon: https://biodiversitydata.se/wp-content/uploads/2021/02/cropped-favicon-180x180.png
-skin.homeUrl: https://biodiversitydata.se
+skin.favicon: https://static.biodiversitydata.se/favicon.ico
+skin.homeUrl: https://tools.biodiversitydata.se
 
 # API key for external apps
-webservice.apiKey: to_be_added
+webservice.apiKey:
 
 # Default primary fields for Export to CSV functionality
 admin.export.csv.primary.fields: id,userName,firstName,lastName,email,activated,locked,created
@@ -124,5 +124,5 @@ spring:
   session:
     store-type: none
 
-privacyPolicy: https://docs.biodiversitydata.se/sbdi-data/sbdi-atlas-terms-of-use/privacy-policy-2/
+privacyPolicy: https://docs.biodiversitydata.se/sbdi-data/sbdi-atlas-terms-of-use/privacy-policy/
 termsOfUse : https://docs.biodiversitydata.se/sbdi-data/sbdi-atlas-terms-of-use/
