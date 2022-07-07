@@ -26,7 +26,7 @@ services:
     image: bioatlas/ala-apikey:v1.5
     container_name: apikey
     environment:
-      - JAVA_OPTS=-Xmx2g -Xms128m -Xss256k
+      JAVA_OPTS: -Xmx2g -Xms128m -Xss256k -Dlog4j2.formatMsgNoLookups=true
     env_file: ./env/.envapikey
     volumes:
       - ./config/apikey-config.yml:/tmp/apikey-config.yml
@@ -42,10 +42,10 @@ services:
       - db_data_mysqldbcas:/var/lib/mysql
 
   userdetails:
-    image: bioatlas/ala-userdetails:v2.4
+    image: bioatlas/ala-userdetails:v2.4-sbdi
     container_name: userdetails
     environment:
-      - JAVA_OPTS=-Xmx2g -Xms128m -Xss256k
+      JAVA_OPTS: -Xmx2g -Xms128m -Xss256k -Dlog4j2.formatMsgNoLookups=true
     env_file: ./env/.envcas
     volumes:
       - ./config/userdetails-config.yml:/tmp/userdetails-config.yml
@@ -62,7 +62,7 @@ services:
     image: bioatlas/ala-cas:v5.3.12-2
     container_name: casserver
     environment:
-      - JAVA_OPTS=-Xmx2g -Xms128m -Xss256k
+      JAVA_OPTS: -Xmx2g -Xms128m -Xss256k -Dlog4j2.formatMsgNoLookups=true
     env_file: ./env/.envcas
     volumes:
       - ./config/cas5-config.yml:/tmp/application.yml
@@ -72,7 +72,7 @@ services:
     image: bioatlas/ala-cas-management:v5.3
     container_name: casmanage
     environment:
-      - JAVA_OPTS=-Xmx2g -Xms128m -Xss256k
+      JAVA_OPTS: -Xmx2g -Xms128m -Xss256k -Dlog4j2.formatMsgNoLookups=true
     env_file: ./env/.envcas
     volumes:
       - ./config/cas-management-config.properties:/tmp/application.properties
