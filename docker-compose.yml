@@ -6,30 +6,10 @@ networks:
       name: sbdinet
 
 volumes:
-  db_data_mysqldbapikey:
   db_data_mysqldbcas:
   db_data_mongodbcas:
 
 services:
-
-  mysqldbapikey:
-    image: mysql:5.7
-    environment:
-      - LANG=C.UTF-8
-    container_name: mysqldbapikey
-    env_file: ./env/.envapikey
-    volumes:
-      - ./apikey/db:/docker-entrypoint-initdb.d
-      - db_data_mysqldbapikey:/var/lib/mysql
-
-  apikey:
-    image: bioatlas/ala-apikey:v1.5
-    container_name: apikey
-    environment:
-      JAVA_OPTS: -Xmx2g -Xms128m -Xss256k -Dlog4j2.formatMsgNoLookups=true
-    env_file: ./env/.envapikey
-    volumes:
-      - ./config/apikey-config.yml:/tmp/apikey-config.yml
 
   mysqldbcas:
     image: mysql:5.7
